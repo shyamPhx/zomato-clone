@@ -1,0 +1,82 @@
+.locationDetailsTitle{
+  padding: 5px;
+  font-weight: bold;
+}
+
+.locationDetailsTitle span{
+  text-transform: capitalize;
+}
+
+.homeLocationBtn{
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+
+.card-body p{
+  margin-bottom:0px;
+}
+
+.homeSortBtn{
+  padding:5px 5px;
+}
+
+#locationHomePage{
+  font-size: 17px;
+}
+
+.geoLocationBtn{
+  cursor: pointer;
+}
+
+.navBrandClass{
+  display: inline !important;
+  font-family: customCursiveFont;
+  font-weight: bold;
+  font-size: 3rem; 
+  margin-right: 0;
+  width: 100px;
+  height: auto;
+}
+
+ul li{
+  cursor: pointer;
+}
+
+.hidden{
+  display: none !important;
+}
+
+.collectionCard{
+  /* padding-top: 20px; */
+  /* height: 300px; */
+  font-size: 10px;
+  background: rgba(0,0,0,0.5);
+}
+
+.collectionCard h6{
+  font-size:0.9rem;
+}
+
+.img-fluid-collections{
+  max-width: 100%;
+  height: 250px;
+}
+
+@media screen and (max-width: 600px) {
+  .collectionCard h6{
+    font-size:0.5rem;
+  } 
+
+  .collectionsTitle{
+    font-size: 12px;
+  }
+}
+
+.navbar-collapse{
+  justify-content: flex-end;
+}
+
+.footerCustom{
+  background-color: #F8F8F8;
+  margin-top: 5rem;
+}

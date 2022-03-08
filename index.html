@@ -1,0 +1,248 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Zomato Clone</title>
+</head>
+
+<body>
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand navBrandClass" href="https://flamboyant-tesla-4a9902.netlify.app"><img class="img-fluid" src="./images/logos/navBrandLogo.png"
+              alt=""></a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link text-uppercase active" id="homeBtn"  onclick="showHomeSection()">home</a></li>
+              <li class="nav-item"><a class="nav-link text-uppercase" id="collectionsBtn"  onclick="showCollectionsSection()">Collections</a></li>
+              <li class="nav-item"><a class="nav-link text-uppercase" id="locationDetailsBtn" onclick="showLocationDetailsSection()">Location Details</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <section id="homeSection">
+    <div class="container mt-2">
+      <div class="row">
+        <div class="offset-md-6 col-md-6 col-12">
+          
+          <form class="form" role="form" onsubmit="showRestaurantsByLocationHomePage()">
+            <div class="form-group row">
+              <div class="offset-md-3 col-md-9 col-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text geoLocationBtn" id="detectLocationBtn" onclick="detectLocation()"><i
+                        class="medium material-icons">add_location</i></span>
+                  </div>
+                  <input type="text" class="form-control" id="locationHomePage" placeholder="Location" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-danger homeLocationBtn" type="submit" id="button-addon2">Find Restaurants</button>
+                  </div>
+                  <small id="locationNameHelp" class="form-text text-muted"></small>
+                </div>
+              </div>
+            </div>
+        </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p id="errorMessageHomePage" class="form-text text-danger"></p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12" id="homePageSortBtnsDiv">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="homePageRestaurantDetails">
+
+        </div>
+      </div>
+      
+      <div class="row hidden" id="loadingIndicatorHomePage">
+        <div class="col-12 text-center">
+          <div class="loading loadingIndicator">
+            <img src="./images/loading.gif" alt="loading" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <div class="container hidden" id="loadingIndicator">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="loading loadingIndicator">
+          <img src="./images/loading.gif" alt="loading" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <section id="collectionsSection" class="hidden">
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <h3>Collections</h3>
+        </div>
+        <div class="col-md-6 col-12">
+          <form class="form" role="form" onsubmit="getCollections()">
+            <div class="row">
+              <div class="offset-md-3 col-md-9 col-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text geoLocationBtn" id="detectLocationBtnForCollections" onclick="detectLocationForCollections()"><i
+                        class="medium material-icons">add_location</i></span>
+                  </div>
+                  <input type="text" class="form-control" id="cityName" placeholder="City Name" required>
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-danger homeLocationBtn">Collections</button>
+                  </div>
+                  <small id="cityNameHelp" class="form-text text-muted"></small>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <h6>Explore curated lists of top restaurants, cafes, pubs, and bars in your city, based on trends</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p id="errorMessageCollections" class="form-text text-danger"></p>
+        </div>
+      </div>
+
+      <div class="row hidden" id="loadingIndicatorCollections">
+        <div class="col-12 text-center">
+          <div class="loading loadingIndicator">
+            <img src="./images/loading.gif" alt="loading" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="collectionDetails">
+      <div class="row">
+      </div>
+    </div>
+  </section>
+
+
+  <section id="locationDetailsSection" class="hidden">
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p id="errorMessage" class="form-text text-danger"></p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-12" id="locationDetails">
+  
+        </div>
+      </div>
+    </div> 
+  </section>
+
+ 
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color lighten-3 pt-4 footerCustom">
+  <div class="container text-center text-md-left">
+    <div class="row">
+      <div class="col-md-2 col-lg-2 mr-auto my-md-4 my-0 mt-4 mb-1">
+        <h5 class="font-weight-bold text-uppercase mb-4"><i>Zomato</i></h5>
+        <h5>Company</h5>
+        <a href="#" class="text-muted">who we are</a><br>
+        <a href="#" class="text-muted">Blog</a><br>
+        <a href="#" class="text-muted">Careers</a><br>
+        <a href="#" class="text-muted">Report Fraud</a><br>
+        <a href="#" class="text-muted">Contact</a><br>
+      </div>
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-2 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+        <h5 class="font-weight-bold text-uppercase mb-4">For foodies</h5>
+        <a href="#" class="text-muted">Code of Conduct</a><br>
+        <a href="#" class="text-muted">Community</a><br>
+        <a href="#" class="text-muted">Blogger Help</a><br>
+        <a href="#" class="text-muted">Developers</a><br>
+        <a href="#" class="text-muted">Mobile Apps</a><br>
+      </div>
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-3 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+        <h5 class="font-weight-bold text-uppercase mb-4">For restaurants</h5>
+        <a href="#" class="text-muted">Add Restaurant</a><br>
+        <a href="#" class="text-muted">Claim Your Listing</a><br>
+        <a href="#" class="text-muted">Business App</a><br>
+        <a href="#" class="text-muted">Restaurant Widgets</a><br>
+        <a href="#" class="text-muted">Products for Business</a><br>
+      </div>
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+        <h5 class="font-weight-bold text-uppercase mb-4">For You</h5>
+        <a href="#" class="text-muted">Privacy</a><br>
+        <a href="#" class="text-muted">Terms</a><br>
+        <a href="#" class="text-muted">Security</a><br>
+        <a href="#" class="text-muted">Sitemap</a><br>
+      </div>
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+        <h5 class="font-weight-bold text-uppercase mb-4">Social Links</h5>
+        <a href="#" class="text-muted">Facebook</a><br>
+        <a href="#" class="text-muted">Twitter</a><br>
+        <a href="#" class="text-muted">Instagram</a><br>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <hr>
+        <div class="footer-copyright text-center text-small py-3">
+          <small>
+            By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies. All trademarks are properties of their respective owners. 2008-2020 © Zomato™ Pvt Ltd. All rights reserved.
+          </small> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+ 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script src="apiData.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
